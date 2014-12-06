@@ -193,33 +193,9 @@ int reverse_assemble (struct row_of_memory* memory)
 				sprintf(assem, "ADD R%d, R%d, #%d", DR, SR1, imm5);
 			}
 			node->assembly = assem;
-		} else { /* reaching here, opcode is not 0001 */
-			node = search_opcode(memory, 0);
-			if (node != NULL) { /* if the opcode is 0000 */
-				int max = 7 + max_len_label;
-				if (max < 12) max = 12;
-				char* assem = malloc(max * sizeof(char));
-				subopcode = node->contents / 512 % 8;
-				if (subopcode == 4) { /* if subopcode is 100 */
-					int imm9 = (node->contents) % 512;
-					if (imm9 > 255) {
-						imm9 = imm9 - 512;
-					}
-					struct row_of_memory* node_label = search_address(memory, node->address - imm9 + 1);
-					if (node_label != NULL && node_label->label != NULL)
-						printf(assem, "BRn %s", node_label->label);
-					else sprintf(assem, "BRn #%d", imm9);
-					node->assembly = assem;
-				} else if (subopcode == 6) { /* if subopcode is 110 */
-					/* TODO */
-				}
-			} else { /* if the opcode is not 0000 */
-				/* TODO */
-				memory = node->next; /* next time, search from the next node of current node */
-			}
-		}
-		
-		
+			memory = node->next;
+		} else break; /* no more node with opcode 0001 */
+
 	} while (1);
 	return 0 ;
 }
