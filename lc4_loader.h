@@ -21,4 +21,4 @@ FILE * get_file() ;
  *
  * returns 0 upon successs, non-zero if an error occurs.
  */
-int parse_file (FILE* my_obj_file, struct row_of_memory* memory) ;
+int parse_file (FILE* my_obj_file, struct row_of_memory** memory) ;

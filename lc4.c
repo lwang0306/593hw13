@@ -2,10 +2,11 @@
 #include "lc4_memory.h"
 #include "lc4_loader.h"
 #include "lc4_disassembler.h"
+#include <stdlib.h>
 
 /* program to mimic LC4's program & data memory */
 
-int main () {
+/*int main () {*/
 
 	/**
 	 * main() holds the linked list &
@@ -13,8 +14,7 @@ int main () {
 	 */
 
 	/* step 1: create head pointer to linked list: memory 	*/
-	struct row_of_memory* memory = NULL ;
-
+	
 	
 	/* step 2: call function: get_file() in lc4_loader.c 	*/
 	/*   TODO: call function & check for errorsl		*/
@@ -37,5 +37,5 @@ int main () {
 
 
 	/* only return 0 if everything works properly */
-	return 0 ;
-}
+	/*return 0 ;
+}*/
